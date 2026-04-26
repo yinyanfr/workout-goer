@@ -1,0 +1,67 @@
+import type { LocaleDict } from "./index";
+
+const dict: LocaleDict = {
+  "nav.home": "首页",
+  "nav.plans": "计划",
+
+  "landing.subtitle": "AI帮你思考，你只负责练",
+  "landing.cta": "查看计划 →",
+  "landing.footer": "v0.1 · 仅供娱乐",
+
+  "theme.light": "亮色模式",
+  "theme.dark": "暗色模式",
+
+  "plans.phasesCount": "{n} 个阶段",
+  "plans.principles": "训练原则",
+  "plans.recoveryRules": "每周恢复规则",
+  "plans.redFlags": "风险提示",
+  "plans.phaseLabel": "阶段 {n}",
+  "plans.objective": "目标",
+  "plans.cardio": "有氧训练",
+  "plans.strength": "力量训练",
+  "plans.recovery": "恢复与休息",
+  "plans.expectedResult": "阶段目标",
+
+  "cardio.frequency": "频率",
+  "cardio.rest": "休息",
+  "cardio.notes": "备注",
+  "cardio.warning": "警告",
+  "cardio.elliptical": "椭圆机替代",
+  "cardio.sessions": "本周训练类型",
+
+  "table.week": "周次",
+  "table.duration": "时长(分)",
+  "table.speed": "速度(km/h)",
+  "table.incline": "坡度(%)",
+  "table.note": "备注",
+  "table.action": "",
+  "table.type": "训练类型",
+  "table.timesPerWeek": "每周次数",
+  "table.intervals": "间歇说明",
+  "table.name": "动作名称",
+  "table.setsReps": "组数 × 次数",
+  "table.startingWeight": "起始重量",
+  "table.viewDetail": "查看",
+
+  "strength.status": "状态",
+  "strength.frequency": "频率",
+  "strength.interval": "间隔",
+  "strength.equipment": "器械",
+  "strength.baseExercises": "基础动作",
+  "strength.addedExercises": "新增动作",
+  "strength.rules": "规则",
+  "strength.progression": "进阶",
+  "strength.structure": "结构",
+  "strength.weightRule": "加重",
+
+  "recovery.restDays": "完全休息",
+  "recovery.activeRecovery": "主动恢复",
+  "recovery.foamRolling": "泡沫轴放松",
+  "recovery.sleep": "睡眠",
+
+  "weekly.back": "← 返回计划总览",
+  "weekly.weekTitle": "第{week}周",
+  "weekly.notFound": "未找到第 {week} 周的数据",
+};
+
+export default dict;

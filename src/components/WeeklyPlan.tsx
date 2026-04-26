@@ -10,25 +10,12 @@ import {
   Alert,
 } from "antd";
 import { Link } from "umi";
+import { useMemo } from "react";
+import { useI18n } from "@/hooks/useI18n";
 import type { PlanData } from "@/types/plan";
 import { getWeekData, parseWeekRange, type WeekData } from "@/utils/plan-utils";
 
 const { Title, Paragraph, Text } = Typography;
-
-const strengthColumns = [
-  { title: "动作名称", dataIndex: "name", key: "name" },
-  { title: "组数 × 次数", dataIndex: "setsReps", key: "setsReps" },
-  { title: "起始重量", dataIndex: "startingWeight", key: "startingWeight" },
-];
-
-const sessionColumns = [
-  { title: "训练类型", dataIndex: "type", key: "type" },
-  { title: "每周次数", dataIndex: "times", key: "times" },
-  { title: "时长(分)", dataIndex: "duration", key: "duration" },
-  { title: "速度(km/h)", dataIndex: "speed", key: "speed" },
-  { title: "坡度(%)", dataIndex: "incline", key: "incline" },
-  { title: "间歇说明", dataIndex: "intervals", key: "intervals" },
-];
 
 interface WeeklyPlanProps {
   plan: PlanData;
@@ -36,17 +23,39 @@ interface WeeklyPlanProps {
 }
 
 export default function WeeklyPlan({ plan, weekNum }: WeeklyPlanProps) {
+  const { t } = useI18n();
   const data: WeekData | null = getWeekData(plan, weekNum);
+
+  const strengthColumns = useMemo(
+    () => [
+      { title: t("table.name"), dataIndex: "name", key: "name" },
+      { title: t("table.setsReps"), dataIndex: "setsReps", key: "setsReps" },
+      { title: t("table.startingWeight"), dataIndex: "startingWeight", key: "startingWeight" },
+    ],
+    [t],
+  );
+
+  const sessionColumns = useMemo(
+    () => [
+      { title: t("table.type"), dataIndex: "type", key: "type" },
+      { title: t("table.timesPerWeek"), dataIndex: "times", key: "times" },
+      { title: t("table.duration"), dataIndex: "duration", key: "duration" },
+      { title: t("table.speed"), dataIndex: "speed", key: "speed" },
+      { title: t("table.incline"), dataIndex: "incline", key: "incline" },
+      { title: t("table.intervals"), dataIndex: "intervals", key: "intervals" },
+    ],
+    [t],
+  );
 
   if (!data) {
     return (
-      <div style={{ maxWidth: 700 }}>
+    <div style={{ maxWidth: 700, margin: "0 auto", padding: "24px 20px" }}>
         <Link to="/plans">
           <Button type="link" style={{ padding: 0, marginBottom: 16 }}>
-            ← 返回计划总览
+            {t("weekly.back")}
           </Button>
         </Link>
-        <Empty description={`未找到第 ${weekNum} 周的数据`} />
+        <Empty description={t("weekly.notFound", { week: weekNum })} />
       </div>
     );
   }
@@ -55,54 +64,51 @@ export default function WeeklyPlan({ plan, weekNum }: WeeklyPlanProps) {
   const cardio = phase.cardio;
   const strength = phase.strength;
   const recovery = phase.recovery;
-  const [phaseStart, phaseEnd] = parseWeekRange(phase.phase);
 
   return (
-    <div style={{ maxWidth: 700 }}>
+    <div style={{ maxWidth: 700, margin: "0 auto", padding: "24px 20px" }}>
       <Link to="/plans">
         <Button type="link" style={{ padding: 0, marginBottom: 12 }}>
-          ← 返回计划总览
+          {t("weekly.back")}
         </Button>
       </Link>
 
       <Title level={2} style={{ marginBottom: 4 }}>
-        第{weekNum}周
+        {t("weekly.weekTitle", { week: weekNum })}
       </Title>
       <Paragraph type="secondary" style={{ marginBottom: 20 }}>
         {phase.phase} — {phase.objective}
       </Paragraph>
 
       <Space direction="vertical" style={{ width: "100%" }} size="middle">
-        {/* Cardio Section */}
         {cardio && (
-          <Card size="small" title="有氧训练">
+          <Card size="small" title={t("plans.cardio")}>
             {cardio.frequency_per_week && (
               <Paragraph style={{ marginBottom: 8 }}>
-                频率: <Text strong>{cardio.frequency_per_week}</Text>
+                {t("cardio.frequency")}:{" "}
+                <Text strong>{cardio.frequency_per_week}</Text>
                 {cardio.rest_days && (
-                  <Text type="secondary"> | 休息: {cardio.rest_days}</Text>
+                  <Text type="secondary">
+                    {" "}
+                    | {t("cardio.rest")}: {cardio.rest_days}
+                  </Text>
                 )}
               </Paragraph>
             )}
 
             {cardioEntry && (
-              <Descriptions
-                size="small"
-                bordered
-                column={2}
-                style={{ marginBottom: 12 }}
-              >
-                <Descriptions.Item label="时长">
+              <Descriptions size="small" bordered column={2} style={{ marginBottom: 12 }}>
+                <Descriptions.Item label={t("table.duration")}>
                   {cardioEntry.duration_minutes} 分钟
                 </Descriptions.Item>
-                <Descriptions.Item label="速度">
+                <Descriptions.Item label={t("table.speed")}>
                   {cardioEntry.speed_kmh} km/h
                 </Descriptions.Item>
-                <Descriptions.Item label="坡度">
+                <Descriptions.Item label={t("table.incline")}>
                   {cardioEntry.incline_percent}%
                 </Descriptions.Item>
                 {cardioEntry.interval_example && (
-                  <Descriptions.Item label="间歇示例" span={2}>
+                  <Descriptions.Item label={t("table.intervals")} span={2}>
                     {cardioEntry.interval_example}
                   </Descriptions.Item>
                 )}
@@ -112,7 +118,7 @@ export default function WeeklyPlan({ plan, weekNum }: WeeklyPlanProps) {
             {!cardioEntry && cardio.structure && cardio.structure.length > 0 && (
               <>
                 <Text strong style={{ marginBottom: 8, display: "block" }}>
-                  本周训练类型:
+                  {t("cardio.sessions")}:
                 </Text>
                 <Table
                   size="small"
@@ -123,9 +129,7 @@ export default function WeeklyPlan({ plan, weekNum }: WeeklyPlanProps) {
                     times: String(s.times_per_week),
                     duration: String(s.duration_minutes),
                     speed: s.speed_kmh ? String(s.speed_kmh) : "-",
-                    incline: s.incline_percent
-                      ? String(s.incline_percent)
-                      : "-",
+                    incline: s.incline_percent ? String(s.incline_percent) : "-",
                     intervals: s.intervals || "-",
                   }))}
                   pagination={false}
@@ -136,33 +140,27 @@ export default function WeeklyPlan({ plan, weekNum }: WeeklyPlanProps) {
 
             {cardio.notes && cardio.notes.length > 0 && (
               <Paragraph type="secondary" style={{ marginBottom: 4 }}>
-                备注: {cardio.notes.join("; ")}
+                {t("cardio.notes")}: {cardio.notes.join("; ")}
               </Paragraph>
             )}
 
             {cardio.optional?.elliptical && (
               <Paragraph type="secondary" style={{ marginBottom: 4 }}>
-                椭圆机替代: {cardio.optional.elliptical}
+                {t("cardio.elliptical")}: {cardio.optional.elliptical}
               </Paragraph>
             )}
 
             {cardio.warning && (
-              <Alert
-                message={cardio.warning}
-                type="warning"
-                showIcon
-                style={{ marginTop: 8 }}
-              />
+              <Alert message={cardio.warning} type="warning" showIcon style={{ marginTop: 8 }} />
             )}
           </Card>
         )}
 
-        {/* Strength Section */}
         {strength && (
-          <Card size="small" title="力量训练">
+          <Card size="small" title={t("plans.strength")}>
             {strength.status ? (
               <Paragraph>
-                状态: <Tag>{strength.status}</Tag>
+                {t("strength.status")}: <Tag>{strength.status}</Tag>
                 {strength.reason && (
                   <Text type="secondary"> — {strength.reason}</Text>
                 )}
@@ -172,31 +170,28 @@ export default function WeeklyPlan({ plan, weekNum }: WeeklyPlanProps) {
                 <Paragraph style={{ marginBottom: 8 }}>
                   {strength.frequency_per_week && (
                     <>
-                      频率:{" "}
+                      {t("strength.frequency")}:{" "}
                       <Text strong>{strength.frequency_per_week}次/周</Text>
                     </>
                   )}
                   {strength.interval_days && (
                     <Text type="secondary">
                       {" "}
-                      | 间隔: {strength.interval_days}
+                      | {t("strength.interval")}: {strength.interval_days}
                     </Text>
                   )}
                   {strength.equipment && (
                     <Text type="secondary">
                       {" "}
-                      | 器械: {strength.equipment}
+                      | {t("strength.equipment")}: {strength.equipment}
                     </Text>
                   )}
                 </Paragraph>
 
                 {strength.exercises && strength.exercises.length > 0 && (
                   <>
-                    <Text
-                      strong
-                      style={{ marginBottom: 8, display: "block" }}
-                    >
-                      基础动作:
+                    <Text strong style={{ marginBottom: 8, display: "block" }}>
+                      {t("strength.baseExercises")}:
                     </Text>
                     <Table
                       size="small"
@@ -205,8 +200,7 @@ export default function WeeklyPlan({ plan, weekNum }: WeeklyPlanProps) {
                         key: i,
                         name: e.name,
                         setsReps: e.sets_reps,
-                        startingWeight:
-                          e.starting_weight || e.starting_point || "-",
+                        startingWeight: e.starting_weight || e.starting_point || "-",
                       }))}
                       pagination={false}
                       style={{ marginBottom: 12 }}
@@ -214,52 +208,47 @@ export default function WeeklyPlan({ plan, weekNum }: WeeklyPlanProps) {
                   </>
                 )}
 
-                {strength.added_exercises &&
-                  strength.added_exercises.length > 0 && (
-                    <>
-                      <Text
-                        strong
-                        style={{ marginBottom: 8, display: "block" }}
-                      >
-                        新增动作:
-                      </Text>
-                      <Table
-                        size="small"
-                        columns={strengthColumns}
-                        dataSource={strength.added_exercises.map((e, i) => ({
-                          key: i,
-                          name: e.name,
-                          setsReps: e.sets_reps,
-                          startingWeight:
-                            e.starting_weight || e.starting_point || "-",
-                        }))}
-                        pagination={false}
-                        style={{ marginBottom: 12 }}
-                      />
-                    </>
-                  )}
+                {strength.added_exercises && strength.added_exercises.length > 0 && (
+                  <>
+                    <Text strong style={{ marginBottom: 8, display: "block" }}>
+                      {t("strength.addedExercises")}:
+                    </Text>
+                    <Table
+                      size="small"
+                      columns={strengthColumns}
+                      dataSource={strength.added_exercises.map((e, i) => ({
+                        key: i,
+                        name: e.name,
+                        setsReps: e.sets_reps,
+                        startingWeight: e.starting_weight || e.starting_point || "-",
+                      }))}
+                      pagination={false}
+                      style={{ marginBottom: 12 }}
+                    />
+                  </>
+                )}
 
                 {strength.rules && strength.rules.length > 0 && (
                   <Paragraph type="secondary" style={{ marginBottom: 4 }}>
-                    规则: {strength.rules.join("; ")}
+                    {t("strength.rules")}: {strength.rules.join("; ")}
                   </Paragraph>
                 )}
 
                 {strength.progression && (
                   <Paragraph type="secondary" style={{ marginBottom: 4 }}>
-                    进阶: {strength.progression}
+                    {t("strength.progression")}: {strength.progression}
                   </Paragraph>
                 )}
 
                 {strength.structure && (
                   <Paragraph type="secondary" style={{ marginBottom: 4 }}>
-                    结构: {strength.structure}
+                    {t("strength.structure")}: {strength.structure}
                   </Paragraph>
                 )}
 
                 {strength.weight_rule && (
                   <Paragraph type="secondary" style={{ marginBottom: 4 }}>
-                    加重: {strength.weight_rule}
+                    {t("strength.weightRule")}: {strength.weight_rule}
                   </Paragraph>
                 )}
               </>
@@ -267,27 +256,26 @@ export default function WeeklyPlan({ plan, weekNum }: WeeklyPlanProps) {
           </Card>
         )}
 
-        {/* Recovery Section */}
         {recovery && (
-          <Card size="small" title="恢复与休息">
+          <Card size="small" title={t("plans.recovery")}>
             <Descriptions size="small" column={2}>
               {recovery.weekly_rest_days !== undefined && (
-                <Descriptions.Item label="完全休息">
+                <Descriptions.Item label={t("recovery.restDays")}>
                   {recovery.weekly_rest_days}天/周
                 </Descriptions.Item>
               )}
               {recovery.active_recovery && (
-                <Descriptions.Item label="主动恢复">
+                <Descriptions.Item label={t("recovery.activeRecovery")}>
                   {recovery.active_recovery}
                 </Descriptions.Item>
               )}
               {recovery.foam_rolling && (
-                <Descriptions.Item label="泡沫轴放松">
+                <Descriptions.Item label={t("recovery.foamRolling")}>
                   {recovery.foam_rolling}
                 </Descriptions.Item>
               )}
               {recovery.sleep && (
-                <Descriptions.Item label="睡眠">
+                <Descriptions.Item label={t("recovery.sleep")}>
                   {recovery.sleep}
                 </Descriptions.Item>
               )}
@@ -295,22 +283,21 @@ export default function WeeklyPlan({ plan, weekNum }: WeeklyPlanProps) {
           </Card>
         )}
 
-        {/* Phase Expected Result */}
         {phase.expected_result && (
-          <Card size="small" title="阶段目标">
+          <Card size="small" title={t("plans.expectedResult")}>
             <Descriptions size="small" column={3}>
               {phase.expected_result.weight_loss_kg && (
-                <Descriptions.Item label="本阶段减重">
+                <Descriptions.Item label={t("plans.expectedResult")}>
                   {phase.expected_result.weight_loss_kg} kg
                 </Descriptions.Item>
               )}
               {phase.expected_result.cumulative_weight_loss_kg && (
-                <Descriptions.Item label="累计减重">
+                <Descriptions.Item label={t("plans.expectedResult")}>
                   {phase.expected_result.cumulative_weight_loss_kg} kg
                 </Descriptions.Item>
               )}
               {phase.expected_result.expected_weight_kg && (
-                <Descriptions.Item label="目标体重">
+                <Descriptions.Item label={t("plans.expectedResult")}>
                   {phase.expected_result.expected_weight_kg} kg
                 </Descriptions.Item>
               )}

@@ -19,7 +19,10 @@ There are **no test, lint, typecheck, or CI scripts** configured.
 - **Routes** defined in `.umirc.ts` — this is the single source of truth, not file names:
   `/` → `pages/index.tsx`, `/plans` → `pages/plans.tsx`, `/plans/:week` → `pages/weekly.tsx`
   Note: `pages/user.tsx` exists but is **not wired** to any route.
-- **Layout** wraps all pages via `layouts/index.tsx` (Umi convention).
+- **Layout** wraps all pages via `layouts/index.tsx` — provides `I18nProvider` (custom context) + antd `ConfigProvider` (locale + dark/light theme) + fixed navbar (frosted glass, brand, nav links, locale switch, theme toggle).
+- **Dark mode**: persisted to `localStorage`, applied via `<html data-theme>` for custom Less and antd `ConfigProvider theme.algorithm`. CSS variables in `layouts/index.less` define the palette.
+- **i18n**: custom lightweight implementation (`src/hooks/useI18n.tsx`, `src/locales/`). `I18nProvider` wraps the app, `useI18n()` returns `{ t, locale, setLocale }`. 4 locales: `zh-CN`, `en-US`, `fr-FR`, `ja-JP`. Persisted to `localStorage`. antd component locale is fed via `ConfigProvider locale`. Translations cover UI chrome only — plan data content (exercise names, phase descriptions from `plans.json`) stays in Chinese.
+- **Landing page**: minimal dark hero with a 3D wireframe canvas animation (`src/components/HeroCanvas.tsx`) — two rotating toruses, a double-helix, particle field. Pure Canvas 2D + math, no libraries.
 - `src/.umi/` is **auto-generated** by `umi setup` — never edit by hand.
 - `tsconfig.json` extends the generated `src/.umi/tsconfig.json`.
 
@@ -32,8 +35,13 @@ There are **no test, lint, typecheck, or CI scripts** configured.
 
 ## Data model
 - App types in `src/global.d.ts`: `WeeklyPlan`, `WorkOut` (Aerobic | Strength), `Plans`
+- Plan types in `src/types/plan.ts` mirror the actual `plans.json` structure (snake_case keys). Utility `src/utils/plan-utils.ts` provides week lookup logic.
 - Richer type definitions and an example plan live in `src/examples/` — these are **design references**, not yet integrated into the app.
 
 ## Current state
-- Most components are **stubs/placeholders**: `PlanList.tsx` is a TODO comment, all pages contain placeholder text.
-- The app is early-stage scaffolding; expect to build out real logic in pages, components, and services.
+- **Landing page**: 3D canvas hero + i18n text overlay.
+- **Plans page**: antd `Collapse` with 4 phases, each showing cardio/strength/recovery tables loaded from `plans.json`.
+- **Weekly page**: drills into a single week via route param, shows that week's cardio specs + phase strength/recovery.
+- `src/services/index.ts` initializes Firebase but is **not yet used** — data is hardcoded.
+- `pages/user.tsx` exists but is **not wired** and remains a placeholder.
+- The app is in active development; expect Firebase Auth + Firestore integration next.

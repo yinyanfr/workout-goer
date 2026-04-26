@@ -1,0 +1,67 @@
+import type { LocaleDict } from "./index";
+
+const dict: LocaleDict = {
+  "nav.home": "ホーム",
+  "nav.plans": "プラン",
+
+  "landing.subtitle": "AIが考え、あなたは鍛える",
+  "landing.cta": "プランを見る →",
+  "landing.footer": "v0.1 · 遊びです",
+
+  "theme.light": "ライトモード",
+  "theme.dark": "ダークモード",
+
+  "plans.phasesCount": "{n} フェーズ",
+  "plans.principles": "トレーニング原則",
+  "plans.recoveryRules": "週間回復ルール",
+  "plans.redFlags": "注意事項",
+  "plans.phaseLabel": "フェーズ {n}",
+  "plans.objective": "目標",
+  "plans.cardio": "有酸素運動",
+  "plans.strength": "筋力トレーニング",
+  "plans.recovery": "回復と休息",
+  "plans.expectedResult": "フェーズ目標",
+
+  "cardio.frequency": "頻度",
+  "cardio.rest": "休息",
+  "cardio.notes": "備考",
+  "cardio.warning": "警告",
+  "cardio.elliptical": "エリプティカル代替",
+  "cardio.sessions": "今週のセッション",
+
+  "table.week": "週",
+  "table.duration": "時間(分)",
+  "table.speed": "速度(km/h)",
+  "table.incline": "傾斜(%)",
+  "table.note": "備考",
+  "table.action": "",
+  "table.type": "種類",
+  "table.timesPerWeek": "週回数",
+  "table.intervals": "インターバル",
+  "table.name": "種目名",
+  "table.setsReps": "セット × 回数",
+  "table.startingWeight": "開始重量",
+  "table.viewDetail": "詳細",
+
+  "strength.status": "状態",
+  "strength.frequency": "頻度",
+  "strength.interval": "間隔",
+  "strength.equipment": "器具",
+  "strength.baseExercises": "基本種目",
+  "strength.addedExercises": "追加種目",
+  "strength.rules": "ルール",
+  "strength.progression": "進め方",
+  "strength.structure": "構成",
+  "strength.weightRule": "加重ルール",
+
+  "recovery.restDays": "完全休養",
+  "recovery.activeRecovery": "アクティブリカバリー",
+  "recovery.foamRolling": "フォームローラー",
+  "recovery.sleep": "睡眠",
+
+  "weekly.back": "← プラン一覧に戻る",
+  "weekly.weekTitle": "第{week}週",
+  "weekly.notFound": "第{week}週のデータが見つかりません",
+};
+
+export default dict;

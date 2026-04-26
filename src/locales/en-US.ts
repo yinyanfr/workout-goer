@@ -1,0 +1,67 @@
+import type { LocaleDict } from "./index";
+
+const dict: LocaleDict = {
+  "nav.home": "Home",
+  "nav.plans": "Plans",
+
+  "landing.subtitle": "AI does the thinking, you do the lifting",
+  "landing.cta": "View Plan →",
+  "landing.footer": "v0.1 · For fun only",
+
+  "theme.light": "Light Mode",
+  "theme.dark": "Dark Mode",
+
+  "plans.phasesCount": "{n} Phases",
+  "plans.principles": "Principles",
+  "plans.recoveryRules": "Weekly Recovery Rules",
+  "plans.redFlags": "Red Flags",
+  "plans.phaseLabel": "Phase {n}",
+  "plans.objective": "Objective",
+  "plans.cardio": "Cardio",
+  "plans.strength": "Strength Training",
+  "plans.recovery": "Recovery & Rest",
+  "plans.expectedResult": "Phase Goals",
+
+  "cardio.frequency": "Frequency",
+  "cardio.rest": "Rest",
+  "cardio.notes": "Notes",
+  "cardio.warning": "Warning",
+  "cardio.elliptical": "Elliptical Alternative",
+  "cardio.sessions": "This Week's Sessions",
+
+  "table.week": "Week",
+  "table.duration": "Duration (min)",
+  "table.speed": "Speed (km/h)",
+  "table.incline": "Incline (%)",
+  "table.note": "Note",
+  "table.action": "",
+  "table.type": "Type",
+  "table.timesPerWeek": "Times/Week",
+  "table.intervals": "Intervals",
+  "table.name": "Exercise",
+  "table.setsReps": "Sets × Reps",
+  "table.startingWeight": "Starting Weight",
+  "table.viewDetail": "View",
+
+  "strength.status": "Status",
+  "strength.frequency": "Frequency",
+  "strength.interval": "Interval",
+  "strength.equipment": "Equipment",
+  "strength.baseExercises": "Base Exercises",
+  "strength.addedExercises": "Added Exercises",
+  "strength.rules": "Rules",
+  "strength.progression": "Progression",
+  "strength.structure": "Structure",
+  "strength.weightRule": "Weight Rule",
+
+  "recovery.restDays": "Full Rest",
+  "recovery.activeRecovery": "Active Recovery",
+  "recovery.foamRolling": "Foam Rolling",
+  "recovery.sleep": "Sleep",
+
+  "weekly.back": "← Back to Plan Overview",
+  "weekly.weekTitle": "Week {week}",
+  "weekly.notFound": "No data found for week {week}",
+};
+
+export default dict;
