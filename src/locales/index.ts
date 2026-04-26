@@ -4,6 +4,7 @@ export interface LocaleDict {
   /** nav */
   "nav.home": string;
   "nav.plans": string;
+  "nav.help": string;
   "nav.signIn": string;
   "nav.signOut": string;
   "nav.profile": string;
@@ -87,6 +88,23 @@ export interface LocaleDict {
   "user.saving": string;
   "user.saved": string;
   "user.loginRequired": string;
+
+  /** plan management */
+  "plans.emptyTitle": string;
+  "plans.emptyHint": string;
+  "plans.import": string;
+  "plans.importNew": string;
+  "plans.delete": string;
+  "plans.confirmDelete": string;
+  "importer.title": string;
+  "importer.help": string;
+  "importer.helpLink": string;
+  "importer.tryExample": string;
+  "importer.placeholder": string;
+  "importer.importing": string;
+  "importer.success": string;
+  "importer.invalidJson": string;
+  "importer.missingFields": string;
 }
 
 export const localeNames: Record<Locale, string> = {

@@ -1,5 +1,5 @@
 import { Link, Outlet } from "umi";
-import { ConfigProvider, theme } from "antd";
+import { ConfigProvider, theme, App } from "antd";
 import { useState, useEffect } from "react";
 import { AuthProvider } from "@/hooks/useAuth";
 import { I18nProvider, useI18n } from "@/hooks/useI18n";
@@ -41,6 +41,7 @@ function AppShell() {
           mode === "dark" ? theme.darkAlgorithm : theme.defaultAlgorithm,
       }}
     >
+      <App>
       <nav className={styles.nav}>
         <div className={styles.navInner}>
           <Link to="/" className={styles.brand}>
@@ -64,6 +65,7 @@ function AppShell() {
       <main className={styles.main}>
         <Outlet />
       </main>
+      </App>
     </ConfigProvider>
   );
 }

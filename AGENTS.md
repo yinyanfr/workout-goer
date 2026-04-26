@@ -41,8 +41,9 @@ There are **no test, lint, typecheck, or CI scripts** configured.
 
 ## Current state
 - **Landing page**: 3D canvas hero + i18n text overlay.
-- **Plans page**: antd `Collapse` with 4 phases, each showing cardio/strength/recovery tables loaded from `plans.json`.
-- **Weekly page**: drills into a single week via route param, shows that week's cardio specs + phase strength/recovery.
+- **Plans page**: loads plan from Firestore `plans/{uid}`. Auth-guarded (redirects to `/user` if not logged in). Empty state with "Import Plan" button when no plan exists. When plan exists: renders antd `Collapse` with 4 phases + [Import New] [Delete] buttons. `PlanImporter` modal accepts JSON paste (supports both camelCase and snake_case, normalizes to snake_case on save).
+- **Weekly page**: loads plan from Firestore, drills into a single week via route param. Auth-guarded.
 - **User page**: profile form (display name, gender, age, height, weight, bio) — loads from and saves to Firestore `user/{uid}`.
 - **Auth**: Google Sign-In working via Firebase Auth. Login state persisted across sessions. `UserMenu` in nav.
-- Plan data is still hardcoded (`plans.json`); moving user-owned plans to Firestore is next.
+- **Services**: `src/services/index.ts` exports `auth`, `db`, `getUserProfile(uid)`, `saveUserProfile(uid, data)`, `getUserPlan(uid)`, `saveUserPlan(uid, plan)`, `deleteUserPlan(uid)`, `validateAndNormalizePlan(json)`.
+- Plan data is no longer hardcoded; `plans.json` is only used as a reference/example.

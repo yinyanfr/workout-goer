@@ -3,6 +3,7 @@ import type { LocaleDict } from "./index";
 const dict: LocaleDict = {
   "nav.home": "首页",
   "nav.plans": "计划",
+  "nav.help": "帮助",
   "nav.signIn": "Google登录",
   "nav.signOut": "退出登录",
   "nav.profile": "个人资料",
@@ -77,6 +78,22 @@ const dict: LocaleDict = {
   "user.saving": "保存中...",
   "user.saved": "已保存",
   "user.loginRequired": "请先登录",
+
+  "plans.emptyTitle": "还没有健身计划",
+  "plans.emptyHint": "前往 AI 工具生成一份计划，然后粘贴 JSON 到这里",
+  "plans.import": "导入计划",
+  "plans.importNew": "导入新计划",
+  "plans.delete": "删除计划",
+  "plans.confirmDelete": "确定要删除当前计划吗？",
+  "importer.title": "导入健身计划",
+  "importer.help": "从 AI 工具复制生成的健身计划 JSON，粘贴到下方文本框，然后点击导入。支持驼峰命名和下划线命名两种格式。",
+  "importer.helpLink": "查看 JSON 格式说明",
+  "importer.tryExample": "填入示例",
+  "importer.placeholder": "在此粘贴 JSON...",
+  "importer.importing": "导入中...",
+  "importer.success": "计划已导入",
+  "importer.invalidJson": "JSON 格式无效",
+  "importer.missingFields": "缺少必需字段",
 };
 
 export default dict;

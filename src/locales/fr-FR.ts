@@ -3,6 +3,7 @@ import type { LocaleDict } from "./index";
 const dict: LocaleDict = {
   "nav.home": "Accueil",
   "nav.plans": "Programme",
+  "nav.help": "Aide",
   "nav.signIn": "Connexion Google",
   "nav.signOut": "Déconnexion",
   "nav.profile": "Profil",
@@ -77,6 +78,22 @@ const dict: LocaleDict = {
   "user.saving": "Sauvegarde...",
   "user.saved": "Sauvegardé",
   "user.loginRequired": "Veuillez vous connecter",
+
+  "plans.emptyTitle": "Aucun programme pour l'instant",
+  "plans.emptyHint": "Générez un programme avec un outil IA, puis collez le JSON ici",
+  "plans.import": "Importer un programme",
+  "plans.importNew": "Importer un nouveau programme",
+  "plans.delete": "Supprimer le programme",
+  "plans.confirmDelete": "Voulez-vous vraiment supprimer ce programme ?",
+  "importer.title": "Importer un programme",
+  "importer.help": "Copiez le JSON du programme généré par l'IA, collez-le ci-dessous, puis cliquez sur Importer. Les formats camelCase et snake_case sont acceptés.",
+  "importer.helpLink": "Voir le guide du format JSON",
+  "importer.tryExample": "Exemple",
+  "importer.placeholder": "Collez le JSON ici...",
+  "importer.importing": "Importation...",
+  "importer.success": "Programme importé",
+  "importer.invalidJson": "Format JSON invalide",
+  "importer.missingFields": "Champs obligatoires manquants",
 };
 
 export default dict;

@@ -3,6 +3,7 @@ import type { LocaleDict } from "./index";
 const dict: LocaleDict = {
   "nav.home": "Home",
   "nav.plans": "Plans",
+  "nav.help": "Help",
   "nav.signIn": "Sign in with Google",
   "nav.signOut": "Sign out",
   "nav.profile": "Profile",
@@ -77,6 +78,22 @@ const dict: LocaleDict = {
   "user.saving": "Saving...",
   "user.saved": "Saved",
   "user.loginRequired": "Please sign in first",
+
+  "plans.emptyTitle": "No workout plan yet",
+  "plans.emptyHint": "Generate a plan with an AI tool, then paste the JSON here",
+  "plans.import": "Import Plan",
+  "plans.importNew": "Import New Plan",
+  "plans.delete": "Delete Plan",
+  "plans.confirmDelete": "Are you sure you want to delete this plan?",
+  "importer.title": "Import Workout Plan",
+  "importer.help": "Copy the AI-generated workout plan JSON, paste it below, then click Import. Both camelCase and snake_case formats are accepted.",
+  "importer.helpLink": "View JSON format guide",
+  "importer.tryExample": "Load example",
+  "importer.placeholder": "Paste JSON here...",
+  "importer.importing": "Importing...",
+  "importer.success": "Plan imported",
+  "importer.invalidJson": "Invalid JSON format",
+  "importer.missingFields": "Missing required fields",
 };
 
 export default dict;

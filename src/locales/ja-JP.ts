@@ -3,6 +3,7 @@ import type { LocaleDict } from "./index";
 const dict: LocaleDict = {
   "nav.home": "ホーム",
   "nav.plans": "プラン",
+  "nav.help": "ヘルプ",
   "nav.signIn": "Googleでログイン",
   "nav.signOut": "ログアウト",
   "nav.profile": "プロフィール",
@@ -77,6 +78,22 @@ const dict: LocaleDict = {
   "user.saving": "保存中...",
   "user.saved": "保存しました",
   "user.loginRequired": "ログインしてください",
+
+  "plans.emptyTitle": "まだプランがありません",
+  "plans.emptyHint": "AIツールでプランを生成し、JSONをここに貼り付けてください",
+  "plans.import": "プランをインポート",
+  "plans.importNew": "新しいプランをインポート",
+  "plans.delete": "プランを削除",
+  "plans.confirmDelete": "このプランを削除してもよろしいですか？",
+  "importer.title": "プランのインポート",
+  "importer.help": "AIが生成したワークアウトプランのJSONをコピーし、下のテキストエリアに貼り付けて、インポートをクリックしてください。camelCaseとsnake_caseの両方の形式に対応しています。",
+  "importer.helpLink": "JSON形式ガイドを見る",
+  "importer.tryExample": "サンプルを読み込む",
+  "importer.placeholder": "JSONをここに貼り付け...",
+  "importer.importing": "インポート中...",
+  "importer.success": "プランがインポートされました",
+  "importer.invalidJson": "無効なJSON形式",
+  "importer.missingFields": "必須フィールドが不足しています",
 };
 
 export default dict;
