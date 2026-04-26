@@ -5,6 +5,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { getUserPlan } from "@/services/index";
 import type { PlanData } from "@/types/plan";
 import WeeklyPlan from "@/components/WeeklyPlan";
+import styles from "@/components/PlanView.less";
 
 const WeeklyPage = () => {
   const params = useParams<{ week?: string }>();
@@ -36,7 +37,7 @@ const WeeklyPage = () => {
 
   if (authLoading) {
     return (
-      <div style={{ maxWidth: 700, margin: "0 auto", padding: "48px 20px", textAlign: "center" }}>
+      <div className={styles.center}>
         <Spin size="large" />
       </div>
     );
@@ -45,7 +46,7 @@ const WeeklyPage = () => {
 
   if (loading) {
     return (
-      <div style={{ maxWidth: 700, margin: "0 auto", padding: "48px 20px", textAlign: "center" }}>
+      <div className={styles.center}>
         <Spin size="large" />
       </div>
     );
@@ -53,7 +54,7 @@ const WeeklyPage = () => {
 
   if (!plan) {
     return (
-      <div style={{ maxWidth: 700, margin: "0 auto", padding: "48px 20px" }}>
+      <div className={styles.weeklyContainer}>
         <Empty description="No plan found. Import a plan first." />
       </div>
     );

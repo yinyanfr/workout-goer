@@ -5,7 +5,7 @@
   "homepage": "https://github.com/yinyanfr/workout-goer#readme",
   "scripts": {
     "dev": "umi dev",
-    "build": "umi build",
+    "build": "umi build && node scripts/build-sw.mjs",
     "postinstall": "umi setup",
     "setup": "umi setup",
     "start": "npm run dev",
@@ -20,7 +20,8 @@
   "dependencies": {
     "antd": "^6.3.6",
     "firebase": "^12.12.1",
-    "umi": "^4.6.47"
+    "umi": "^4.6.47",
+    "workbox-webpack-plugin": "^7.4.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.9.1",

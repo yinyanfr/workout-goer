@@ -9,3 +9,5 @@
 .swc
 .turbopack
 .DS_Store
+*.cache
+session-ses_2368.md

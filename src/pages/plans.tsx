@@ -8,6 +8,7 @@ import { getUserPlan, saveUserPlan, deleteUserPlan } from "@/services/index";
 import type { PlanData } from "@/types/plan";
 import PlanList from "@/components/PlanList";
 import PlanImporter from "@/components/PlanImporter";
+import styles from "@/components/PlanView.less";
 
 const { Title, Text } = Typography;
 
@@ -43,7 +44,7 @@ const PlansPage = () => {
   // Redirect if not logged in
   if (authLoading) {
     return (
-      <div style={{ maxWidth: 900, margin: "0 auto", padding: "48px 20px", textAlign: "center" }}>
+      <div className={styles.center}>
         <Spin size="large" />
       </div>
     );
@@ -72,7 +73,7 @@ const PlansPage = () => {
   // No plan → empty state
   if (!loading && !plan) {
     return (
-      <div style={{ maxWidth: 500, margin: "0 auto", padding: "48px 20px" }}>
+      <div className={styles.emptyContainer}>
         <Empty
           image={Empty.PRESENTED_IMAGE_SIMPLE}
           description={
@@ -104,7 +105,7 @@ const PlansPage = () => {
 
   // Plan exists
   return (
-    <div style={{ maxWidth: 900, margin: "0 auto", padding: "24px 20px" }}>
+    <div className={styles.container}>
       <div style={{ display: "flex", gap: 8, marginBottom: 20, justifyContent: "flex-end" }}>
         <Button icon={<PlusOutlined />} onClick={() => setImporterOpen(true)}>
           {t("plans.importNew")}

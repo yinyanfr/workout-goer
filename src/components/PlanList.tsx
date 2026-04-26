@@ -1,18 +1,9 @@
-import {
-  Collapse,
-  Table,
-  Tag,
-  Card,
-  Typography,
-  Space,
-  Descriptions,
-  Alert,
-  Button,
-} from "antd";
+import { Collapse, Table, Tag, Card, Typography, Space, Descriptions, Alert, Button } from "antd";
 import { Link } from "umi";
 import { useMemo } from "react";
 import { useI18n } from "@/hooks/useI18n";
 import type { PlanData, PhaseData, CardioWeekItem } from "@/types/plan";
+import styles from "./PlanView.less";
 
 const { Title, Paragraph, Text } = Typography;
 
@@ -50,9 +41,7 @@ function PhaseHeader({ phase, index }: { phase: PhaseData; index: number }) {
       <Text type="secondary" style={{ fontSize: 13 }}>
         {phase.objective}
       </Text>
-      {expected?.weight_loss_kg && (
-        <Tag color="blue">减重 {expected.weight_loss_kg}kg</Tag>
-      )}
+      {expected?.weight_loss_kg && <Tag color="blue">减重 {expected.weight_loss_kg}kg</Tag>}
       {expected?.cumulative_weight_loss_kg && (
         <Tag color="green">累计减重 {expected.cumulative_weight_loss_kg}kg</Tag>
       )}
@@ -104,7 +93,7 @@ function PhaseDetail({ phase }: { phase: PhaseData }) {
       <Card size="small" title={t("plans.objective")}>
         <Paragraph style={{ marginBottom: 4 }}>{phase.objective}</Paragraph>
         {phase.expected_result && (
-          <Descriptions size="small" column={3}>
+          <Descriptions size="small" column={{ xs: 1, sm: 2, md: 3 }}>
             {phase.expected_result.weight_loss_kg && (
               <Descriptions.Item label={t("plans.expectedResult")}>
                 {phase.expected_result.weight_loss_kg} kg
@@ -128,8 +117,7 @@ function PhaseDetail({ phase }: { phase: PhaseData }) {
         <Card size="small" title={t("plans.cardio")}>
           {cardio.frequency_per_week && (
             <Paragraph style={{ marginBottom: 8 }}>
-              {t("cardio.frequency")}:{" "}
-              <Text strong>{cardio.frequency_per_week}</Text>
+              {t("cardio.frequency")}: <Text strong>{cardio.frequency_per_week}</Text>
               {cardio.rest_days && (
                 <Text type="secondary">
                   {" "}
@@ -152,16 +140,18 @@ function PhaseDetail({ phase }: { phase: PhaseData }) {
                   speed: String(item.speed_kmh),
                   incline: String(item.incline_percent),
                   note: item.interval_example || "-",
-                  action: startWeek > 0 ? (
-                    <Link to={`/plans/${startWeek}`}>
-                      <Button size="small" type="link">
-                        {t("table.viewDetail")}
-                      </Button>
-                    </Link>
-                  ) : null,
+                  action:
+                    startWeek > 0 ? (
+                      <Link to={`/plans/${startWeek}`}>
+                        <Button size="small" type="link">
+                          {t("table.viewDetail")}
+                        </Button>
+                      </Link>
+                    ) : null,
                 };
               })}
               pagination={false}
+              scroll={{ x: "max-content" }}
               style={{ marginBottom: 12 }}
             />
           )}
@@ -180,6 +170,7 @@ function PhaseDetail({ phase }: { phase: PhaseData }) {
                 intervals: s.intervals || "-",
               }))}
               pagination={false}
+              scroll={{ x: "max-content" }}
               style={{ marginBottom: 12 }}
             />
           )}
@@ -197,12 +188,7 @@ function PhaseDetail({ phase }: { phase: PhaseData }) {
           )}
 
           {cardio.warning && (
-            <Alert
-              title={cardio.warning}
-              type="warning"
-              showIcon
-              style={{ marginTop: 8 }}
-            />
+            <Alert title={cardio.warning} type="warning" showIcon style={{ marginTop: 8 }} />
           )}
         </Card>
       )}
@@ -212,9 +198,7 @@ function PhaseDetail({ phase }: { phase: PhaseData }) {
           {strength.status ? (
             <Paragraph>
               {t("strength.status")}: <Tag>{strength.status}</Tag>
-              {strength.reason && (
-                <Text type="secondary"> — {strength.reason}</Text>
-              )}
+              {strength.reason && <Text type="secondary"> — {strength.reason}</Text>}
             </Paragraph>
           ) : (
             <>
@@ -254,6 +238,7 @@ function PhaseDetail({ phase }: { phase: PhaseData }) {
                       startingWeight: e.starting_weight || e.starting_point || "-",
                     }))}
                     pagination={false}
+                    scroll={{ x: "max-content" }}
                     style={{ marginBottom: 12 }}
                   />
                 </>
@@ -274,6 +259,7 @@ function PhaseDetail({ phase }: { phase: PhaseData }) {
                       startingWeight: e.starting_weight || e.starting_point || "-",
                     }))}
                     pagination={false}
+                    scroll={{ x: "max-content" }}
                     style={{ marginBottom: 12 }}
                   />
                 </>
@@ -309,7 +295,7 @@ function PhaseDetail({ phase }: { phase: PhaseData }) {
 
       {recovery && (
         <Card size="small" title={t("plans.recovery")}>
-          <Descriptions size="small" column={2}>
+          <Descriptions size="small" column={{ xs: 1, sm: 2 }}>
             {recovery.weekly_rest_days !== undefined && (
               <Descriptions.Item label={t("recovery.restDays")}>
                 {recovery.weekly_rest_days}天/周
@@ -326,9 +312,7 @@ function PhaseDetail({ phase }: { phase: PhaseData }) {
               </Descriptions.Item>
             )}
             {recovery.sleep && (
-              <Descriptions.Item label={t("recovery.sleep")}>
-                {recovery.sleep}
-              </Descriptions.Item>
+              <Descriptions.Item label={t("recovery.sleep")}>{recovery.sleep}</Descriptions.Item>
             )}
           </Descriptions>
         </Card>
@@ -346,7 +330,8 @@ export default function PlanList({ plan }: PlanListProps) {
     children: <PhaseDetail phase={phase} />,
   }));
 
-  const summaryItems: Array<{ key: string; label: React.ReactNode; children: React.ReactNode }> = [];
+  const summaryItems: Array<{ key: string; label: React.ReactNode; children: React.ReactNode }> =
+    [];
 
   if (plan.principles.length > 0) {
     summaryItems.push({
@@ -377,7 +362,11 @@ export default function PlanList({ plan }: PlanListProps) {
   if (plan.red_flags.length > 0) {
     summaryItems.push({
       key: "red-flags",
-      label: <Text strong style={{ color: "#ff4d4f" }}>{t("plans.redFlags")}</Text>,
+      label: (
+        <Text strong style={{ color: "#ff4d4f" }}>
+          {t("plans.redFlags")}
+        </Text>
+      ),
       children: (
         <ul style={{ paddingLeft: 20, margin: 0 }}>
           {plan.red_flags.map((f, i) => (
@@ -389,7 +378,7 @@ export default function PlanList({ plan }: PlanListProps) {
   }
 
   return (
-    <div style={{ maxWidth: 900, margin: "0 auto", padding: "24px 20px" }}>
+    <div className={styles.wideContainer}>
       <Title level={2} style={{ marginBottom: 4 }}>
         {plan.goal}
       </Title>
@@ -398,18 +387,10 @@ export default function PlanList({ plan }: PlanListProps) {
       </Text>
 
       {summaryItems.length > 0 && (
-        <Collapse
-          size="small"
-          style={{ marginBottom: 16 }}
-          items={summaryItems}
-        />
+        <Collapse size="small" style={{ marginBottom: 16 }} items={summaryItems} />
       )}
 
-      <Collapse
-        size="small"
-        items={phaseItems}
-        defaultActiveKey={phaseItems.map((p) => p.key)}
-      />
+      <Collapse size="small" items={phaseItems} defaultActiveKey={phaseItems.map((p) => p.key)} />
     </div>
   );
 }

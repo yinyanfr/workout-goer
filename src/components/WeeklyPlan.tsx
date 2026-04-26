@@ -4,6 +4,7 @@ import { useMemo } from "react";
 import { useI18n } from "@/hooks/useI18n";
 import type { PlanData } from "@/types/plan";
 import { getWeekData, type WeekData } from "@/utils/plan-utils";
+import styles from "./PlanView.less";
 
 const { Title, Paragraph, Text } = Typography;
 
@@ -39,7 +40,7 @@ export default function WeeklyPlan({ plan, weekNum }: WeeklyPlanProps) {
 
   if (!data) {
     return (
-      <div style={{ maxWidth: 700, margin: "0 auto", padding: "24px 20px" }}>
+      <div className={styles.weeklyContainer}>
         <Link to="/plans">
           <Button type="link" style={{ padding: 0, marginBottom: 16 }}>
             {t("weekly.back")}
@@ -56,7 +57,7 @@ export default function WeeklyPlan({ plan, weekNum }: WeeklyPlanProps) {
   const recovery = phase.recovery;
 
   return (
-    <div style={{ maxWidth: 700, margin: "0 auto", padding: "24px 20px" }}>
+    <div className={styles.weeklyContainer}>
       <Link to="/plans">
         <Button type="link" style={{ padding: 0, marginBottom: 12 }}>
           {t("weekly.back")}
@@ -86,7 +87,12 @@ export default function WeeklyPlan({ plan, weekNum }: WeeklyPlanProps) {
             )}
 
             {cardioEntry && (
-              <Descriptions size="small" bordered column={2} style={{ marginBottom: 12 }}>
+              <Descriptions
+                size="small"
+                bordered
+                column={{ xs: 1, sm: 2 }}
+                style={{ marginBottom: 12 }}
+              >
                 <Descriptions.Item label={t("table.duration")}>
                   {cardioEntry.duration_minutes} 分钟
                 </Descriptions.Item>
@@ -122,6 +128,7 @@ export default function WeeklyPlan({ plan, weekNum }: WeeklyPlanProps) {
                     intervals: s.intervals || "-",
                   }))}
                   pagination={false}
+                  scroll={{ x: "max-content" }}
                   style={{ marginBottom: 12 }}
                 />
               </>
@@ -190,6 +197,7 @@ export default function WeeklyPlan({ plan, weekNum }: WeeklyPlanProps) {
                         startingWeight: e.starting_weight || e.starting_point || "-",
                       }))}
                       pagination={false}
+                      scroll={{ x: "max-content" }}
                       style={{ marginBottom: 12 }}
                     />
                   </>
@@ -210,6 +218,7 @@ export default function WeeklyPlan({ plan, weekNum }: WeeklyPlanProps) {
                         startingWeight: e.starting_weight || e.starting_point || "-",
                       }))}
                       pagination={false}
+                      scroll={{ x: "max-content" }}
                       style={{ marginBottom: 12 }}
                     />
                   </>
@@ -245,7 +254,7 @@ export default function WeeklyPlan({ plan, weekNum }: WeeklyPlanProps) {
 
         {recovery && (
           <Card size="small" title={t("plans.recovery")}>
-            <Descriptions size="small" column={2}>
+            <Descriptions size="small" column={{ xs: 1, sm: 2 }}>
               {recovery.weekly_rest_days !== undefined && (
                 <Descriptions.Item label={t("recovery.restDays")}>
                   {recovery.weekly_rest_days}天/周
@@ -270,7 +279,7 @@ export default function WeeklyPlan({ plan, weekNum }: WeeklyPlanProps) {
 
         {phase.expected_result && (
           <Card size="small" title={t("plans.expectedResult")}>
-            <Descriptions size="small" column={3}>
+            <Descriptions size="small" column={{ xs: 1, sm: 2, md: 3 }}>
               {phase.expected_result.weight_loss_kg && (
                 <Descriptions.Item label={t("plans.expectedResult")}>
                   {phase.expected_result.weight_loss_kg} kg
