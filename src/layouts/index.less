@@ -1,10 +1,125 @@
-.navs {
-  ul {
-    padding: 0;
-    list-style: none;
-    display: flex;
+:root {
+  --bg: #0b0b12;
+  --text: rgba(255, 255, 255, 0.85);
+  --nav-bg: rgba(11, 11, 18, 0.78);
+  --nav-border: rgba(255, 255, 255, 0.06);
+  --link-color: rgba(255, 255, 255, 0.6);
+  --link-hover: #fff;
+}
+
+[data-theme="light"] {
+  --bg: #f5f5f5;
+  --text: rgba(0, 0, 0, 0.85);
+  --nav-bg: rgba(255, 255, 255, 0.78);
+  --nav-border: rgba(0, 0, 0, 0.06);
+  --link-color: rgba(0, 0, 0, 0.55);
+  --link-hover: #1677ff;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: 48px;
+  background: var(--nav-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--nav-border);
+}
+
+.navInner {
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.brand {
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--link-hover);
+  text-decoration: none;
+  margin-right: 32px;
+  letter-spacing: -0.01em;
+}
+
+.links {
+  display: flex;
+  gap: 0;
+}
+
+.link {
+  padding: 0 12px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: var(--link-color);
+  text-decoration: none;
+  border-radius: 6px;
+  transition: color 0.15s;
+
+  &:hover {
+    color: var(--link-hover);
   }
-  li {
-    margin-right: 1em;
+}
+
+.actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.main {
+  padding-top: 48px;
+  min-height: 100vh;
+}
+
+.footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 13px;
+  color: var(--link-color);
+
+  a {
+    color: var(--link-color);
+    text-decoration: none;
+    transition: color 0.15s;
+
+    &:hover {
+      color: var(--link-hover);
+    }
+  }
+}
+
+/* mobile */
+@media (max-width: 520px) {
+  .navInner {
+    padding: 0 12px;
+  }
+  .brand {
+    font-size: 14px;
+    margin-right: 16px;
+  }
+  .link {
+    padding: 0 8px;
+    font-size: 13px;
+  }
+  :global(.wg-username),
+  :global(.wg-signin-text) {
+    display: none;
   }
 }

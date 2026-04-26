@@ -17,10 +17,10 @@ interface Strength {
 
 type WorkOut = Aerobic | Strength;
 
-interface DailyPlan {
+interface WeeklyPlan {
   date: Date;
   workouts: WorkOut[];
   notes?: string;
 }
 
-type Plans = DailyPlan[];
+type Plans = WeeklyPlan[];
