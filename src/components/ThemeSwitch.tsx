@@ -8,13 +8,19 @@ export function loadTheme(): Theme {
   try {
     const stored = localStorage.getItem(THEME_KEY);
     if (stored === "dark" || stored === "light") return stored;
-  } catch { /* noop */ }
+  } catch {
+    /* noop */
+  }
   return "dark";
 }
 
 export function applyTheme(theme: Theme) {
   document.documentElement.setAttribute("data-theme", theme);
-  try { localStorage.setItem(THEME_KEY, theme); } catch { /* noop */ }
+  try {
+    localStorage.setItem(THEME_KEY, theme);
+  } catch {
+    /* noop */
+  }
 }
 
 interface Props {
@@ -29,6 +35,7 @@ export default function ThemeSwitch({ theme, onChange }: Props) {
 
   return (
     <button
+      type="button"
       onClick={toggle}
       style={{
         background: "none",

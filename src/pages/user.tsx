@@ -1,24 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link } from "umi";
-import {
-  Card,
-  Form,
-  Input,
-  InputNumber,
-  Select,
-  Button,
-  Avatar,
-  Typography,
-  Space,
-  message,
-} from "antd";
+import { Card, Form, Input, InputNumber, Select, Button, Avatar, Typography, message } from "antd";
 import { useAuth } from "@/hooks/useAuth";
 import { useI18n } from "@/hooks/useI18n";
-import {
-  getUserProfile,
-  saveUserProfile,
-  type UserProfile,
-} from "@/services/index";
+import { getUserProfile, saveUserProfile, type UserProfile } from "@/services/index";
 
 const { Title, Text } = Typography;
 const { TextArea } = Input;

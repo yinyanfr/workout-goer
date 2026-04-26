@@ -1,13 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import {
-  getFirestore,
-  doc,
-  getDoc,
-  setDoc,
-  deleteDoc,
-  serverTimestamp,
-} from "firebase/firestore";
+import { getFirestore, doc, getDoc, setDoc, deleteDoc, serverTimestamp } from "firebase/firestore";
 import type { PlanData } from "@/types/plan";
 
 const firebaseConfig = {
@@ -43,21 +36,14 @@ export async function getUserProfile(uid: string): Promise<UserProfile | null> {
   return snap.data() as UserProfile;
 }
 
-export async function saveUserProfile(
-  uid: string,
-  data: Partial<UserProfile>,
-): Promise<void> {
+export async function saveUserProfile(uid: string, data: Partial<UserProfile>): Promise<void> {
   const cleaned: Record<string, unknown> = {};
   for (const [key, value] of Object.entries(data)) {
     if (value !== null && value !== undefined && value !== "") {
       cleaned[key] = value;
     }
   }
-  await setDoc(
-    doc(db, "user", uid),
-    { ...cleaned, updatedAt: serverTimestamp() },
-    { merge: true },
-  );
+  await setDoc(doc(db, "user", uid), { ...cleaned, updatedAt: serverTimestamp() }, { merge: true });
 }
 
 // -- User Plan --
@@ -104,16 +90,25 @@ const CAMEL_TO_SNAKE: Record<string, string> = {
 };
 
 function normalizeKeys(obj: unknown): unknown {
-  if (Array.isArray(obj)) return obj.map(normalizeKeys);
+  if (Array.isArray(obj)) {
+    const items = obj.map(normalizeKeys);
+    // Unwrap { content: string }[] to string[]
+    if (
+      items.length > 0 &&
+      typeof items[0] === "object" &&
+      items[0] !== null &&
+      "content" in items[0] &&
+      typeof (items[0] as { content: unknown }).content === "string"
+    ) {
+      return items.map((x: unknown) => (x as { content: string }).content);
+    }
+    return items;
+  }
   if (obj && typeof obj === "object") {
     const out: Record<string, unknown> = {};
     for (const [k, v] of Object.entries(obj as Record<string, unknown>)) {
       const key = CAMEL_TO_SNAKE[k] || k;
       out[key] = normalizeKeys(v);
-    }
-    // Unwrap { content: string }[] to string[]
-    if (Array.isArray(out) && out.length > 0 && typeof out[0] === "object" && out[0] !== null && "content" in (out[0] as object)) {
-      return (out as Array<{ content: string }>).map((x) => x.content);
     }
     return out;
   }
@@ -126,9 +121,7 @@ export interface ValidationResult {
   errors?: string[];
 }
 
-export function validateAndNormalizePlan(
-  raw: unknown,
-): ValidationResult {
+export function validateAndNormalizePlan(raw: unknown): ValidationResult {
   if (!raw || typeof raw !== "object" || Array.isArray(raw)) {
     return { valid: false, errors: ["Root value must be a JSON object"] };
   }
@@ -154,7 +147,10 @@ export function validateAndNormalizePlan(
     });
   }
 
-  if (!Array.isArray(obj.weekly_recovery_rules) && !Array.isArray((obj as any).weeklyRecoveryRules)) {
+  if (
+    !Array.isArray(obj.weekly_recovery_rules) &&
+    !Array.isArray((obj as any).weeklyRecoveryRules)
+  ) {
     errors.push("weekly_recovery_rules must be an array");
   }
   if (!Array.isArray(obj.red_flags) && !Array.isArray((obj as any).redFlags)) {

@@ -1,19 +1,9 @@
-import {
-  Card,
-  Table,
-  Typography,
-  Descriptions,
-  Tag,
-  Button,
-  Empty,
-  Space,
-  Alert,
-} from "antd";
+import { Card, Table, Typography, Descriptions, Tag, Button, Empty, Space, Alert } from "antd";
 import { Link } from "umi";
 import { useMemo } from "react";
 import { useI18n } from "@/hooks/useI18n";
 import type { PlanData } from "@/types/plan";
-import { getWeekData, parseWeekRange, type WeekData } from "@/utils/plan-utils";
+import { getWeekData, type WeekData } from "@/utils/plan-utils";
 
 const { Title, Paragraph, Text } = Typography;
 
@@ -49,7 +39,7 @@ export default function WeeklyPlan({ plan, weekNum }: WeeklyPlanProps) {
 
   if (!data) {
     return (
-    <div style={{ maxWidth: 700, margin: "0 auto", padding: "24px 20px" }}>
+      <div style={{ maxWidth: 700, margin: "0 auto", padding: "24px 20px" }}>
         <Link to="/plans">
           <Button type="link" style={{ padding: 0, marginBottom: 16 }}>
             {t("weekly.back")}
@@ -85,8 +75,7 @@ export default function WeeklyPlan({ plan, weekNum }: WeeklyPlanProps) {
           <Card size="small" title={t("plans.cardio")}>
             {cardio.frequency_per_week && (
               <Paragraph style={{ marginBottom: 8 }}>
-                {t("cardio.frequency")}:{" "}
-                <Text strong>{cardio.frequency_per_week}</Text>
+                {t("cardio.frequency")}: <Text strong>{cardio.frequency_per_week}</Text>
                 {cardio.rest_days && (
                   <Text type="secondary">
                     {" "}
@@ -161,9 +150,7 @@ export default function WeeklyPlan({ plan, weekNum }: WeeklyPlanProps) {
             {strength.status ? (
               <Paragraph>
                 {t("strength.status")}: <Tag>{strength.status}</Tag>
-                {strength.reason && (
-                  <Text type="secondary"> — {strength.reason}</Text>
-                )}
+                {strength.reason && <Text type="secondary"> — {strength.reason}</Text>}
               </Paragraph>
             ) : (
               <>
@@ -275,9 +262,7 @@ export default function WeeklyPlan({ plan, weekNum }: WeeklyPlanProps) {
                 </Descriptions.Item>
               )}
               {recovery.sleep && (
-                <Descriptions.Item label={t("recovery.sleep")}>
-                  {recovery.sleep}
-                </Descriptions.Item>
+                <Descriptions.Item label={t("recovery.sleep")}>{recovery.sleep}</Descriptions.Item>
               )}
             </Descriptions>
           </Card>

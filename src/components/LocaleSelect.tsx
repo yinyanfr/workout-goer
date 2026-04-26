@@ -41,6 +41,7 @@ export default function LocaleSelect({ locale, onChange }: Props) {
   return (
     <div ref={ref} style={{ position: "relative" }}>
       <button
+        type="button"
         onClick={() => setOpen(!open)}
         style={{
           background: "none",
@@ -76,6 +77,7 @@ export default function LocaleSelect({ locale, onChange }: Props) {
         >
           {locales.map((l) => (
             <button
+              type="button"
               key={l}
               onClick={() => {
                 onChange(l);

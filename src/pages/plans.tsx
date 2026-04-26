@@ -1,19 +1,15 @@
 import { useEffect, useState, useCallback } from "react";
-import { Link, useNavigate } from "umi";
+import { useNavigate } from "umi";
 import { Button, Typography, Empty, Spin, App } from "antd";
 import { PlusOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useAuth } from "@/hooks/useAuth";
 import { useI18n } from "@/hooks/useI18n";
-import {
-  getUserPlan,
-  saveUserPlan,
-  deleteUserPlan,
-} from "@/services/index";
+import { getUserPlan, saveUserPlan, deleteUserPlan } from "@/services/index";
 import type { PlanData } from "@/types/plan";
 import PlanList from "@/components/PlanList";
 import PlanImporter from "@/components/PlanImporter";
 
-const { Title, Paragraph, Text } = Typography;
+const { Title, Text } = Typography;
 
 const PlansPage = () => {
   const { user, loading: authLoading } = useAuth();
@@ -24,7 +20,6 @@ const PlansPage = () => {
   const [plan, setPlan] = useState<PlanData | null>(null);
   const [loading, setLoading] = useState(true);
   const [importerOpen, setImporterOpen] = useState(false);
-  const [deleting, setDeleting] = useState(false);
 
   const loadPlan = useCallback(async (uid: string) => {
     setLoading(true);
@@ -82,7 +77,9 @@ const PlansPage = () => {
           image={Empty.PRESENTED_IMAGE_SIMPLE}
           description={
             <div>
-              <Title level={4} style={{ marginBottom: 8 }}>{t("plans.emptyTitle")}</Title>
+              <Title level={4} style={{ marginBottom: 8 }}>
+                {t("plans.emptyTitle")}
+              </Title>
               <Text type="secondary">{t("plans.emptyHint")}</Text>
             </div>
           }
