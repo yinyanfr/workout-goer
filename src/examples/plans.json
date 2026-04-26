@@ -1,0 +1,274 @@
+{
+  "goal": "半年减脂与体能提升",
+  "principles": [
+    "保护关节优先于减脂速度",
+    "一次只调整一个变量（速度或坡度）",
+    "运动后不应累到需要补觉",
+    "减肥以饮食管理为主，运动为辅"
+  ],
+  "phases": [
+    {
+      "phase": "第1-4周",
+      "objective": "建立基线，减少极端疲劳",
+      "cardio": {
+        "frequency_per_week": "5-6天",
+        "rest_days": "至少1天完全休息",
+        "plan": [
+          {
+            "weeks": "第1-2周",
+            "duration_minutes": 25,
+            "speed_kmh": 3.0,
+            "incline_percent": 0
+          },
+          {
+            "weeks": "第3-4周",
+            "duration_minutes": "30-35",
+            "speed_kmh": "3.0-3.2",
+            "incline_percent": 0
+          }
+        ],
+        "notes": [
+          "取消一天三组结构，改为一天一次连续完成",
+          "如果运动后仍需补觉，说明强度或时长过大，需要回调"
+        ]
+      },
+      "strength": {
+        "status": "暂不安排",
+        "reason": "当前恢复能力较弱，优先适应日常走路负荷"
+      },
+      "expected_result": {
+        "weight_loss_kg": "4-7"
+      }
+    },
+    {
+      "phase": "第5-8周",
+      "objective": "增加有氧时长并引入极轻力量训练",
+      "cardio": {
+        "frequency_per_week": "5次以上",
+        "plan": [
+          {
+            "weeks": "第5周",
+            "duration_minutes": "35-40",
+            "speed_kmh": 3.2,
+            "incline_percent": 0
+          },
+          {
+            "weeks": "第6周",
+            "duration_minutes": 40,
+            "speed_kmh": 3.5,
+            "incline_percent": 0
+          },
+          {
+            "weeks": "第7周",
+            "duration_minutes": 45,
+            "speed_kmh": 3.5,
+            "incline_percent": "0-1"
+          },
+          {
+            "weeks": "第8周",
+            "duration_minutes": 45,
+            "speed_kmh": "3.5-3.8",
+            "incline_percent": 1
+          }
+        ],
+        "notes": [
+          "加速度和加坡度不要同时加",
+          "心率明显影响正常说话时应退回强度"
+        ]
+      },
+      "strength": {
+        "frequency_per_week": 2,
+        "interval_days": "至少间隔2天",
+        "equipment": "固定轨迹器械",
+        "exercises": [
+          {
+            "name": "坐姿推胸机",
+            "sets_reps": "2×12",
+            "starting_weight": "器械最轻档"
+          },
+          {
+            "name": "坐姿划船机",
+            "sets_reps": "2×12",
+            "starting_weight": "器械最轻档"
+          },
+          {
+            "name": "高位下拉",
+            "sets_reps": "2×12",
+            "starting_weight": "体重的20-25%"
+          },
+          {
+            "name": "坐姿腿屈伸（轻）",
+            "sets_reps": "2×15",
+            "starting_weight": "最轻档"
+          },
+          {
+            "name": "坐姿腿弯举（轻）",
+            "sets_reps": "2×15",
+            "starting_weight": "最轻档"
+          }
+        ],
+        "rules": [
+          "训练结束应有发热感，不应力竭",
+          "若第二天酸痛超过48小时，下次减重量",
+          "轻松完成2×15后再加2.5-5kg",
+          "暂不做深蹲、硬拉、站姿推举"
+        ]
+      },
+      "expected_result": {
+        "cumulative_weight_loss_kg": "8-12"
+      }
+    },
+    {
+      "phase": "第9-16周",
+      "objective": "进入稳定减脂期",
+      "cardio": {
+        "frequency_per_week": "5-6次",
+        "plan": [
+          {
+            "week": 9,
+            "duration_minutes": 45,
+            "speed_kmh": 3.8,
+            "incline_percent": 1
+          },
+          {
+            "week": 10,
+            "duration_minutes": 50,
+            "speed_kmh": 3.8,
+            "incline_percent": "1-2"
+          },
+          {
+            "week": 11,
+            "duration_minutes": 50,
+            "speed_kmh": 4.0,
+            "incline_percent": 2
+          },
+          {
+            "week": 12,
+            "duration_minutes": 50,
+            "speed_kmh": 4.0,
+            "incline_percent": "2-3"
+          },
+          {
+            "week": 13,
+            "duration_minutes": 55,
+            "speed_kmh": 4.2,
+            "incline_percent": 2
+          },
+          {
+            "week": 14,
+            "duration_minutes": 55,
+            "speed_kmh": 4.2,
+            "incline_percent": 3,
+            "interval_example": "平路2分钟/坡3分钟交替"
+          },
+          {
+            "week": 15,
+            "duration_minutes": 60,
+            "speed_kmh": "4.2-4.5",
+            "incline_percent": "2-3"
+          },
+          {
+            "week": 16,
+            "duration_minutes": 60,
+            "speed_kmh": 4.5,
+            "incline_percent": 3
+          }
+        ]
+      },
+      "strength": {
+        "frequency_per_week": "2-3次",
+        "progression": "每2周加一档重量",
+        "added_exercises": [
+          {
+            "name": "坐姿肩推机",
+            "sets_reps": "2×12"
+          },
+          {
+            "name": "器械卷腹机 / 仰卧抬腿",
+            "sets_reps": "2×15"
+          },
+          {
+            "name": "坐姿夹胸 / 反向飞鸟",
+            "sets_reps": "2×12"
+          }
+        ]
+      },
+      "recovery": {
+        "weekly_rest_days": 1,
+        "active_recovery": "每周1天主动恢复：户外散步30分钟 + 拉伸15分钟",
+        "foam_rolling": "每晚泡沫轴滚小腿、大腿前后侧各2分钟",
+        "sleep": "7-8小时"
+      },
+      "expected_result": {
+        "cumulative_weight_loss_kg": "15-20",
+        "expected_weight_kg": "140-145"
+      }
+    },
+    {
+      "phase": "第17-24周",
+      "objective": "提高体能与训练强度",
+      "cardio": {
+        "frequency_per_week": "5-6次",
+        "structure": [
+          {
+            "type": "主力日",
+            "times_per_week": 3,
+            "duration_minutes": 60,
+            "speed_kmh": "4.5-5.0",
+            "incline_percent": "3-5"
+          },
+          {
+            "type": "间歇日",
+            "times_per_week": "1-2",
+            "duration_minutes": 45,
+            "intervals": "6-8组：3分钟5.5km/h + 2分钟4.0km/h"
+          },
+          {
+            "type": "轻松日",
+            "times_per_week": 1,
+            "duration_minutes": 40,
+            "speed_kmh": 4.5,
+            "incline_percent": 0
+          }
+        ],
+        "optional": {
+          "elliptical": "可每周替代1次跑步机，30-40分钟"
+        },
+        "warning": "仍不建议慢跑，除非体重已降到120kg以下且医生同意"
+      },
+      "strength": {
+        "frequency_per_week": "2-3次",
+        "added_exercises": [
+          {
+            "name": "器械辅助深蹲（史密斯机 / 哈克机）",
+            "sets_reps": "2×10",
+            "starting_point": "空杆或轻重量"
+          },
+          {
+            "name": "罗马尼亚硬拉机 / 臀桥器械",
+            "sets_reps": "2×12"
+          }
+        ],
+        "structure": "按上肢日/下肢日分开安排更好",
+        "weight_rule": "完成2×12且仍有2-3次余力时加重量"
+      },
+      "expected_result": {
+        "cumulative_weight_loss_kg": "20-28",
+        "expected_weight_kg": "132-140"
+      }
+    }
+  ],
+  "weekly_recovery_rules": [
+    "每周1天完全休息",
+    "每周1天主动恢复",
+    "睡眠至少7-8小时",
+    "每天喝水2.5-3升"
+  ],
+  "red_flags": [
+    "膝盖、脚踝或腰椎持续疼痛",
+    "运动中胸闷、头晕、心悸",
+    "减重速度持续超过每周2kg",
+    "情绪性进食和暴食",
+    "需要定期复查血脂、肝肾功能和甲状腺"
+  ]
+}
