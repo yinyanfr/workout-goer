@@ -22,7 +22,7 @@ export default function HomePage() {
 
       <a
         className={styles.github}
-        href="https://github.com/anomalyco/workout-goer"
+        href="https://github.com/yinyanfr/workout-goer"
         target="_blank"
         rel="noopener noreferrer"
       >

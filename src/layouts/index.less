@@ -61,7 +61,7 @@ body {
 }
 
 .link {
-  padding: 0 16px;
+  padding: 0 12px;
   height: 34px;
   display: flex;
   align-items: center;
@@ -80,10 +80,46 @@ body {
   margin-left: auto;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 }
 
 .main {
   padding-top: 48px;
   min-height: 100vh;
+}
+
+.footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 13px;
+  color: var(--link-color);
+
+  a {
+    color: var(--link-color);
+    text-decoration: none;
+    transition: color 0.15s;
+
+    &:hover {
+      color: var(--link-hover);
+    }
+  }
+}
+
+/* mobile */
+@media (max-width: 520px) {
+  .navInner {
+    padding: 0 12px;
+  }
+  .brand {
+    font-size: 14px;
+    margin-right: 16px;
+  }
+  .link {
+    padding: 0 8px;
+    font-size: 13px;
+  }
+  :global(.wg-username),
+  :global(.wg-signin-text) {
+    display: none;
+  }
 }

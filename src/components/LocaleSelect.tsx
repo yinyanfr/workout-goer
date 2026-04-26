@@ -14,6 +14,13 @@ const FLAGS: Record<Locale, string> = {
   "ja-JP": "🇯🇵",
 };
 
+const SHORT_CODES: Record<Locale, string> = {
+  "zh-CN": "ZH",
+  "en-US": "EN",
+  "fr-FR": "FR",
+  "ja-JP": "JP",
+};
+
 const locales: Locale[] = ["zh-CN", "en-US", "fr-FR", "ja-JP"];
 
 export default function LocaleSelect({ locale, onChange }: Props) {
@@ -49,7 +56,7 @@ export default function LocaleSelect({ locale, onChange }: Props) {
           gap: 4,
         }}
       >
-        {FLAGS[locale]} {localeNames[locale].split(" ")[0]}
+        {FLAGS[locale]} {SHORT_CODES[locale]}
       </button>
       {open && (
         <div

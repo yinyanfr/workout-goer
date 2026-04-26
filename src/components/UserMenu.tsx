@@ -49,7 +49,7 @@ export default function UserMenu() {
           fontWeight: 500,
         }}
       >
-        {t("nav.signIn")}
+        <span className="wg-signin-text">{t("nav.signIn")}</span>
       </Button>
     );
   }
@@ -85,7 +85,9 @@ export default function UserMenu() {
           <Avatar src={user.photoURL} size={24} style={{ flexShrink: 0 }}>
             {user.displayName?.charAt(0) || "U"}
           </Avatar>
-          <span>{user.displayName || "User"}</span>
+          <span style={{ maxWidth: 120, overflow: "hidden", textOverflow: "ellipsis" }} className="wg-username">
+            {user.displayName || "User"}
+          </span>
         </Space>
       </Button>
     </Dropdown>

@@ -1,6 +1,8 @@
 {
   "private": true,
   "author": "Yan <i@yinyan.fr>",
+  "repository": "github:yinyanfr/workout-goer",
+  "homepage": "https://github.com/yinyanfr/workout-goer#readme",
   "scripts": {
     "dev": "umi dev",
     "build": "umi build",

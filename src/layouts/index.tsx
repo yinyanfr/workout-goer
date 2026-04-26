@@ -65,6 +65,10 @@ function AppShell() {
       <main className={styles.main}>
         <Outlet />
       </main>
+      <footer className={styles.footer}>
+        <span>Made by <a href="https://github.com/yinyanfr" target="_blank" rel="noopener noreferrer">Yan</a> · </span>
+        <a href="https://github.com/yinyanfr/workout-goer" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </footer>
       </App>
     </ConfigProvider>
   );
