@@ -1,12 +1,11 @@
+import PlanList from "@/components/PlanList";
+import planData from "@/examples/plans.json";
+import type { PlanData } from "@/types/plan";
+
+const plan = planData as PlanData;
+
 const PlansPage = () => {
-  return (
-    <div>
-      <p>
-        This is the page that shows the overall planning, and a button to add
-        plans
-      </p>
-    </div>
-  );
+  return <PlanList plan={plan} />;
 };
 
 export default PlansPage;
