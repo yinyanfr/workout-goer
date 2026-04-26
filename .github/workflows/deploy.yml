@@ -13,7 +13,7 @@ jobs:
         with:
           node-version: 20
           cache: npm
-      - run: npm ci
+      - run: npm ci --no-optional
       - run: npm run build
       - name: Deploy to Firebase Hosting
         run: npx -y firebase-tools@latest deploy --token "${{ secrets.FIREBASE_TOKEN }}" --project workout-goer
