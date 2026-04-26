@@ -100,7 +100,7 @@ function PhaseDetail({ phase }: { phase: PhaseData }) {
   );
 
   return (
-    <Space direction="vertical" style={{ width: "100%" }} size="middle">
+    <Space orientation="vertical" style={{ width: "100%" }} size="middle">
       <Card size="small" title={t("plans.objective")}>
         <Paragraph style={{ marginBottom: 4 }}>{phase.objective}</Paragraph>
         {phase.expected_result && (
@@ -198,7 +198,7 @@ function PhaseDetail({ phase }: { phase: PhaseData }) {
 
           {cardio.warning && (
             <Alert
-              message={cardio.warning}
+              title={cardio.warning}
               type="warning"
               showIcon
               style={{ marginTop: 8 }}

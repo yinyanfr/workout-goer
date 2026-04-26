@@ -5,6 +5,7 @@ export default defineConfig({
     { path: "/", component: "index" },
     { path: "/plans", component: "plans" },
     { path: "/plans/:week", component: "weekly" },
+    { path: "/user", component: "user" },
   ],
   npmClient: "npm",
   utoopack: {},

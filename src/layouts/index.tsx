@@ -1,6 +1,7 @@
 import { Link, Outlet } from "umi";
 import { ConfigProvider, theme } from "antd";
 import { useState, useEffect } from "react";
+import { AuthProvider } from "@/hooks/useAuth";
 import { I18nProvider, useI18n } from "@/hooks/useI18n";
 import ThemeSwitch, {
   loadTheme,
@@ -8,6 +9,7 @@ import ThemeSwitch, {
   type Theme,
 } from "@/components/ThemeSwitch";
 import LocaleSelect from "@/components/LocaleSelect";
+import UserMenu from "@/components/UserMenu";
 import type { Locale } from "@/locales/index";
 
 import zhCN from "antd/locale/zh_CN";
@@ -16,7 +18,7 @@ import frFR from "antd/locale/fr_FR";
 import jaJP from "antd/locale/ja_JP";
 import styles from "./index.less";
 
-const antdLocales: Record<Locale, unknown> = {
+const antdLocales = {
   "zh-CN": zhCN,
   "en-US": enUS,
   "fr-FR": frFR,
@@ -53,6 +55,7 @@ function AppShell() {
             </Link>
           </div>
           <div className={styles.actions}>
+            <UserMenu />
             <LocaleSelect locale={locale} onChange={setLocale} />
             <ThemeSwitch theme={mode} onChange={setMode} />
           </div>
@@ -67,8 +70,10 @@ function AppShell() {
 
 export default function Layout() {
   return (
-    <I18nProvider>
-      <AppShell />
-    </I18nProvider>
+    <AuthProvider>
+      <I18nProvider>
+        <AppShell />
+      </I18nProvider>
+    </AuthProvider>
   );
 }

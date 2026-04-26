@@ -6,7 +6,7 @@ service cloud.firestore {
       allow read, write: if false;
     }
     
-    match /users/{userId} {
+    match /user/{userId} {
       allow read, write: if isOwner(userId);
     }
     

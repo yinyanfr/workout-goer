@@ -80,7 +80,7 @@ export default function WeeklyPlan({ plan, weekNum }: WeeklyPlanProps) {
         {phase.phase} — {phase.objective}
       </Paragraph>
 
-      <Space direction="vertical" style={{ width: "100%" }} size="middle">
+      <Space orientation="vertical" style={{ width: "100%" }} size="middle">
         {cardio && (
           <Card size="small" title={t("plans.cardio")}>
             {cardio.frequency_per_week && (
@@ -151,7 +151,7 @@ export default function WeeklyPlan({ plan, weekNum }: WeeklyPlanProps) {
             )}
 
             {cardio.warning && (
-              <Alert message={cardio.warning} type="warning" showIcon style={{ marginTop: 8 }} />
+              <Alert title={cardio.warning} type="warning" showIcon style={{ marginTop: 8 }} />
             )}
           </Card>
         )}

@@ -17,9 +17,8 @@ There are **no test, lint, typecheck, or CI scripts** configured.
 
 ## Architecture
 - **Routes** defined in `.umirc.ts` — this is the single source of truth, not file names:
-  `/` → `pages/index.tsx`, `/plans` → `pages/plans.tsx`, `/plans/:week` → `pages/weekly.tsx`
-  Note: `pages/user.tsx` exists but is **not wired** to any route.
-- **Layout** wraps all pages via `layouts/index.tsx` — provides `I18nProvider` (custom context) + antd `ConfigProvider` (locale + dark/light theme) + fixed navbar (frosted glass, brand, nav links, locale switch, theme toggle).
+  `/` → `pages/index.tsx`, `/plans` → `pages/plans.tsx`, `/plans/:week` → `pages/weekly.tsx`, `/user` → `pages/user.tsx`
+- **Layout** wraps all pages via `layouts/index.tsx` — provides `AuthProvider` (Firebase auth context) → `I18nProvider` (custom context) → antd `ConfigProvider` (locale + dark/light theme) + fixed navbar (frosted glass, brand, nav links, UserMenu, locale switch, theme toggle).
 - **Dark mode**: persisted to `localStorage`, applied via `<html data-theme>` for custom Less and antd `ConfigProvider theme.algorithm`. CSS variables in `layouts/index.less` define the palette.
 - **i18n**: custom lightweight implementation (`src/hooks/useI18n.tsx`, `src/locales/`). `I18nProvider` wraps the app, `useI18n()` returns `{ t, locale, setLocale }`. 4 locales: `zh-CN`, `en-US`, `fr-FR`, `ja-JP`. Persisted to `localStorage`. antd component locale is fed via `ConfigProvider locale`. Translations cover UI chrome only — plan data content (exercise names, phase descriptions from `plans.json`) stays in Chinese.
 - **Landing page**: minimal dark hero with a 3D wireframe canvas animation (`src/components/HeroCanvas.tsx`) — two rotating toruses, a double-helix, particle field. Pure Canvas 2D + math, no libraries.
@@ -29,7 +28,9 @@ There are **no test, lint, typecheck, or CI scripts** configured.
 ## Firebase
 - Project ID: `workout-goer`
 - Firebase config is hardcoded in `src/services/index.ts` (standard for frontend Firebase).
-- **Firestore rules**: data partitioned by user — `users/{userId}` and `plans/{userId}` owned by the authenticated user.
+- **Auth**: Google Sign-In via Firebase Auth (`src/hooks/useAuth.tsx` provides `AuthProvider` + `useAuth()` hook). `UserMenu` component in nav shows sign-in button or avatar dropdown.
+- **Firestore rules**: `user/{userId}` and `plans/{userId}` owned by the authenticated user.
+- **Services**: `src/services/index.ts` exports `auth`, `db`, `getUserProfile(uid)`, `saveUserProfile(uid, data)`.
 - **Hosting**: serves `dist/`, rewrites all routes to `/index.html` (SPA pattern).
 - Firebase CLI commands use `--project workout-goer` or rely on `.firebaserc`.
 
@@ -42,6 +43,6 @@ There are **no test, lint, typecheck, or CI scripts** configured.
 - **Landing page**: 3D canvas hero + i18n text overlay.
 - **Plans page**: antd `Collapse` with 4 phases, each showing cardio/strength/recovery tables loaded from `plans.json`.
 - **Weekly page**: drills into a single week via route param, shows that week's cardio specs + phase strength/recovery.
-- `src/services/index.ts` initializes Firebase but is **not yet used** — data is hardcoded.
-- `pages/user.tsx` exists but is **not wired** and remains a placeholder.
-- The app is in active development; expect Firebase Auth + Firestore integration next.
+- **User page**: profile form (display name, gender, age, height, weight, bio) — loads from and saves to Firestore `user/{uid}`.
+- **Auth**: Google Sign-In working via Firebase Auth. Login state persisted across sessions. `UserMenu` in nav.
+- Plan data is still hardcoded (`plans.json`); moving user-owned plans to Firestore is next.

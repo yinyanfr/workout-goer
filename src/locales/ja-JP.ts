@@ -3,6 +3,9 @@ import type { LocaleDict } from "./index";
 const dict: LocaleDict = {
   "nav.home": "ホーム",
   "nav.plans": "プラン",
+  "nav.signIn": "Googleでログイン",
+  "nav.signOut": "ログアウト",
+  "nav.profile": "プロフィール",
 
   "landing.subtitle": "AIが考え、あなたは鍛える",
   "landing.cta": "プランを見る →",
@@ -62,6 +65,18 @@ const dict: LocaleDict = {
   "weekly.back": "← プラン一覧に戻る",
   "weekly.weekTitle": "第{week}週",
   "weekly.notFound": "第{week}週のデータが見つかりません",
+
+  "user.title": "プロフィール",
+  "user.displayName": "表示名",
+  "user.gender": "性別",
+  "user.age": "年齢",
+  "user.height": "身長 (cm)",
+  "user.weight": "体重 (kg)",
+  "user.bio": "自己紹介",
+  "user.save": "保存",
+  "user.saving": "保存中...",
+  "user.saved": "保存しました",
+  "user.loginRequired": "ログインしてください",
 };
 
 export default dict;

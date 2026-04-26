@@ -3,6 +3,9 @@ import type { LocaleDict } from "./index";
 const dict: LocaleDict = {
   "nav.home": "Home",
   "nav.plans": "Plans",
+  "nav.signIn": "Sign in with Google",
+  "nav.signOut": "Sign out",
+  "nav.profile": "Profile",
 
   "landing.subtitle": "AI does the thinking, you do the lifting",
   "landing.cta": "View Plan →",
@@ -62,6 +65,18 @@ const dict: LocaleDict = {
   "weekly.back": "← Back to Plan Overview",
   "weekly.weekTitle": "Week {week}",
   "weekly.notFound": "No data found for week {week}",
+
+  "user.title": "Profile",
+  "user.displayName": "Display Name",
+  "user.gender": "Gender",
+  "user.age": "Age",
+  "user.height": "Height (cm)",
+  "user.weight": "Weight (kg)",
+  "user.bio": "About Me",
+  "user.save": "Save",
+  "user.saving": "Saving...",
+  "user.saved": "Saved",
+  "user.loginRequired": "Please sign in first",
 };
 
 export default dict;

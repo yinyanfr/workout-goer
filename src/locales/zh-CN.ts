@@ -3,6 +3,9 @@ import type { LocaleDict } from "./index";
 const dict: LocaleDict = {
   "nav.home": "首页",
   "nav.plans": "计划",
+  "nav.signIn": "Google登录",
+  "nav.signOut": "退出登录",
+  "nav.profile": "个人资料",
 
   "landing.subtitle": "AI帮你思考，你只负责练",
   "landing.cta": "查看计划 →",
@@ -62,6 +65,18 @@ const dict: LocaleDict = {
   "weekly.back": "← 返回计划总览",
   "weekly.weekTitle": "第{week}周",
   "weekly.notFound": "未找到第 {week} 周的数据",
+
+  "user.title": "个人资料",
+  "user.displayName": "显示名称",
+  "user.gender": "性别",
+  "user.age": "年龄",
+  "user.height": "身高 (cm)",
+  "user.weight": "体重 (kg)",
+  "user.bio": "自我介绍",
+  "user.save": "保存",
+  "user.saving": "保存中...",
+  "user.saved": "已保存",
+  "user.loginRequired": "请先登录",
 };
 
 export default dict;
