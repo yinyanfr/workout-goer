@@ -48,18 +48,62 @@ export async function saveUserProfile(uid: string, data: Partial<UserProfile>): 
 
 // -- User Plan --
 
+const PLAN_CACHE_PREFIX = "plan_cache_";
+
+function cacheKey(uid: string): string {
+  return PLAN_CACHE_PREFIX + uid;
+}
+
+function getCachedPlan(uid: string): PlanData | null {
+  try {
+    const raw = localStorage.getItem(cacheKey(uid));
+    if (!raw) return null;
+    return JSON.parse(raw) as PlanData;
+  } catch {
+    return null;
+  }
+}
+
+function setCachedPlan(uid: string, plan: PlanData): void {
+  try {
+    localStorage.setItem(cacheKey(uid), JSON.stringify(plan));
+  } catch {
+    // localStorage full or unavailable — ignore
+  }
+}
+
+function clearCachedPlan(uid: string): void {
+  try {
+    localStorage.removeItem(cacheKey(uid));
+  } catch {
+    // ignore
+  }
+}
+
 export async function getUserPlan(uid: string): Promise<PlanData | null> {
-  const snap = await getDoc(doc(db, "plans", uid));
-  if (!snap.exists()) return null;
-  return snap.data() as PlanData;
+  try {
+    const snap = await getDoc(doc(db, "plans", uid));
+    if (!snap.exists()) {
+      clearCachedPlan(uid);
+      return null;
+    }
+    const plan = snap.data() as PlanData;
+    setCachedPlan(uid, plan);
+    return plan;
+  } catch {
+    // Firestore unreachable — fall back to localStorage cache
+    return getCachedPlan(uid);
+  }
 }
 
 export async function saveUserPlan(uid: string, plan: PlanData): Promise<void> {
   await setDoc(doc(db, "plans", uid), plan);
+  setCachedPlan(uid, plan);
 }
 
 export async function deleteUserPlan(uid: string): Promise<void> {
   await deleteDoc(doc(db, "plans", uid));
+  clearCachedPlan(uid);
 }
 
 // -- JSON Import: validate + normalize (accepts both camelCase & snake_case) --

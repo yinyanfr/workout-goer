@@ -86,7 +86,8 @@ const dict: LocaleDict = {
   "plans.delete": "Delete Plan",
   "plans.confirmDelete": "Are you sure you want to delete this plan?",
   "importer.title": "Import Workout Plan",
-  "importer.help": "Copy the AI-generated workout plan JSON, paste it below, then click Import. Both camelCase and snake_case formats are accepted.",
+  "importer.help":
+    "Copy the AI-generated workout plan JSON, paste it below, then click Import. Both camelCase and snake_case formats are accepted.",
   "importer.helpLink": "View JSON format guide",
   "importer.tryExample": "Load example",
   "importer.placeholder": "Paste JSON here...",
@@ -94,6 +95,10 @@ const dict: LocaleDict = {
   "importer.success": "Plan imported",
   "importer.invalidJson": "Invalid JSON format",
   "importer.missingFields": "Missing required fields",
+
+  "cookie.text":
+    "This site uses localStorage and Firebase Auth to function. No tracking cookies, no ads, just gains. By continuing, you accept this.",
+  "cookie.accept": "Got it",
 };
 
 export default dict;

@@ -105,6 +105,10 @@ export interface LocaleDict {
   "importer.success": string;
   "importer.invalidJson": string;
   "importer.missingFields": string;
+
+  /** cookie consent */
+  "cookie.text": string;
+  "cookie.accept": string;
 }
 
 export const localeNames: Record<Locale, string> = {

@@ -6,6 +6,7 @@ import { I18nProvider, useI18n } from "@/hooks/useI18n";
 import ThemeSwitch, { loadTheme, applyTheme, type Theme } from "@/components/ThemeSwitch";
 import LocaleSelect from "@/components/LocaleSelect";
 import UserMenu from "@/components/UserMenu";
+import CookieConsent from "@/components/CookieConsent";
 
 import zhCN from "antd/locale/zh_CN";
 import enUS from "antd/locale/en_US";
@@ -59,6 +60,7 @@ function AppShell() {
         <main className={styles.main}>
           <Outlet />
         </main>
+        <CookieConsent />
         <footer className={styles.footer}>
           <span>
             Made by{" "}

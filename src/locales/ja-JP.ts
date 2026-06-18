@@ -86,7 +86,8 @@ const dict: LocaleDict = {
   "plans.delete": "プランを削除",
   "plans.confirmDelete": "このプランを削除してもよろしいですか？",
   "importer.title": "プランのインポート",
-  "importer.help": "AIが生成したワークアウトプランのJSONをコピーし、下のテキストエリアに貼り付けて、インポートをクリックしてください。camelCaseとsnake_caseの両方の形式に対応しています。",
+  "importer.help":
+    "AIが生成したワークアウトプランのJSONをコピーし、下のテキストエリアに貼り付けて、インポートをクリックしてください。camelCaseとsnake_caseの両方の形式に対応しています。",
   "importer.helpLink": "JSON形式ガイドを見る",
   "importer.tryExample": "サンプルを読み込む",
   "importer.placeholder": "JSONをここに貼り付け...",
@@ -94,6 +95,10 @@ const dict: LocaleDict = {
   "importer.success": "プランがインポートされました",
   "importer.invalidJson": "無効なJSON形式",
   "importer.missingFields": "必須フィールドが不足しています",
+
+  "cookie.text":
+    "このサイトは localStorage と Firebase Auth を使用して動作します。トラッキング Cookie、広告は一切ありません。継続して利用することで同意したものとみなします。",
+  "cookie.accept": "OK",
 };
 
 export default dict;

@@ -86,7 +86,8 @@ const dict: LocaleDict = {
   "plans.delete": "删除计划",
   "plans.confirmDelete": "确定要删除当前计划吗？",
   "importer.title": "导入健身计划",
-  "importer.help": "从 AI 工具复制生成的健身计划 JSON，粘贴到下方文本框，然后点击导入。支持驼峰命名和下划线命名两种格式。",
+  "importer.help":
+    "从 AI 工具复制生成的健身计划 JSON，粘贴到下方文本框，然后点击导入。支持驼峰命名和下划线命名两种格式。",
   "importer.helpLink": "查看 JSON 格式说明",
   "importer.tryExample": "填入示例",
   "importer.placeholder": "在此粘贴 JSON...",
@@ -94,6 +95,10 @@ const dict: LocaleDict = {
   "importer.success": "计划已导入",
   "importer.invalidJson": "JSON 格式无效",
   "importer.missingFields": "缺少必需字段",
+
+  "cookie.text":
+    "本网站使用 localStorage 和 Firebase 登录来正常运行。无跟踪 Cookie，无广告，只有健身。继续使用即表示同意。",
+  "cookie.accept": "知道了",
 };
 
 export default dict;

@@ -86,7 +86,8 @@ const dict: LocaleDict = {
   "plans.delete": "Supprimer le programme",
   "plans.confirmDelete": "Voulez-vous vraiment supprimer ce programme ?",
   "importer.title": "Importer un programme",
-  "importer.help": "Copiez le JSON du programme généré par l'IA, collez-le ci-dessous, puis cliquez sur Importer. Les formats camelCase et snake_case sont acceptés.",
+  "importer.help":
+    "Copiez le JSON du programme généré par l'IA, collez-le ci-dessous, puis cliquez sur Importer. Les formats camelCase et snake_case sont acceptés.",
   "importer.helpLink": "Voir le guide du format JSON",
   "importer.tryExample": "Exemple",
   "importer.placeholder": "Collez le JSON ici...",
@@ -94,6 +95,10 @@ const dict: LocaleDict = {
   "importer.success": "Programme importé",
   "importer.invalidJson": "Format JSON invalide",
   "importer.missingFields": "Champs obligatoires manquants",
+
+  "cookie.text":
+    "Ce site utilise localStorage et Firebase Auth pour fonctionner. Aucun cookie de suivi, aucune pub, juste du sport. En continuant, vous acceptez cela.",
+  "cookie.accept": "J'ai compris",
 };
 
 export default dict;
